@@ -1,9 +1,10 @@
 {
-  "name": "logger",
+  "name": "sdk",
   "version": "1.0.0",
   "description": "generic logger",
   "main": "main.js",
   "dependencies": {
+    "@types/node-fetch": "^2.5.3",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
@@ -11,5 +12,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ICC453/sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ICC453/sdk/issues"
+  },
+  "homepage": "https://github.com/ICC453/sdk#readme"
 }

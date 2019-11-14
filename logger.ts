@@ -1,7 +1,8 @@
 import {environment} from "./common/environment"
 import fetch from 'node-fetch'
 
-interface LogInterface{
+
+interface iLogger{
   debug(primaryMessage:string, ...supportingData:any[]):void;
   warn(primaryMessage:string, ...supportingData:any[]):void;
   error(primaryMessage:string, ...supportingData:any[]):void;
@@ -9,9 +10,12 @@ interface LogInterface{
 
 }
 
-export class Logger implements LogInterface{
-  constructor(){
-
+export class Logger implements iLogger{
+  private sessionId:string
+  private userId:string
+  constructor(userId:string, sessionId:string){
+    this.userId = userId
+    this.sessionId=sessionId
   }
   debug(primaryMessage:string, ...supportingData:any[]){
     this.emitLogMessage("debug",primaryMessage,supportingData)
@@ -32,8 +36,11 @@ export class Logger implements LogInterface{
 
     var body = {'msgType':msgType,
                 'msg':msg,
-                'events':supportingDetails[0]
+                'userId':this.userId,
+                'sessionId':this.sessionId,
+                'log':supportingDetails[0]
               }
+    console.log(JSON.stringify(body))
     fetch(environment.log.url+'/events', {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: 'POST',

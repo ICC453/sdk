@@ -1,8 +1,8 @@
-import { environment } from "./common/environment";
+import { environment } from "../common/environment";
 import fetch from 'node-fetch'
 
 export class CredentialManager {
-    private _token: string
+    private _token: string | undefined
 
     get token() { return this._token }
     set token(token) { this._token = token}
@@ -10,7 +10,7 @@ export class CredentialManager {
     public static login(email:string, password:string): Promise<CredentialManager> {
         var body = {
             'email':email,
-            'password':password,
+            'password':password
         }
 
         return new Promise((resolve, reject) => {
@@ -21,9 +21,9 @@ export class CredentialManager {
             })
                 .then(response=>response.json())
                 .then(json=>{
-                    console.log(json)
+                    console.log(json['accessToken'])
                     const credential = new CredentialManager()
-                    credential._token=json['token']
+                    credential._token=json['accessToken']
                     resolve(credential)
                 })
                 .catch(error=>{

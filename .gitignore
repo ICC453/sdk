@@ -1,2 +1,5 @@
 node_modules
 dist
+main.ts
+.prettierrc
+tslint.json

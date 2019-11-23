@@ -1,8 +1,8 @@
-import {environment} from "./common/environment"
+import {environment} from "../common/environment"
 import fetch from 'node-fetch'
 
 
-interface iLogger{
+export interface iLogger{
   debug(primaryMessage:string, ...supportingData:any[]):void;
   warn(primaryMessage:string, ...supportingData:any[]):void;
   error(primaryMessage:string, ...supportingData:any[]):void;
@@ -42,7 +42,9 @@ export class Logger implements iLogger{
               }
     console.log(JSON.stringify(body))
     fetch(environment.log.url+'/events', {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+      headers: { "Content-Type": "application/json; charset=utf-8",
+                 "Authorization": "Bearer "+ this.sessionId
+               },
       method: 'POST',
       body: JSON.stringify(body)
     }).then(response=>response.json())

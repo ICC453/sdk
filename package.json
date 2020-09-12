@@ -6,7 +6,7 @@
   "types":"dist/index.d.ts",
   "dependencies": {
     "@types/node-fetch": "^2.5.3",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "prettier": "^1.19.1",
